@@ -1,7 +1,77 @@
-<h3>This is the homepage </h3>
+{% load staticfiles %}
+<link>
+  <link>
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+          rel="stylesheet" media="screen"></link>
+    <link href="{% static 'css/style.css'%}" rel="stylesheet" >
 
-<form class="mp3_details">
-    <input type="text" name="file_name">
-    <input type="text" name="text">
-    <input type="submit" name="submit">
-</form>
+  </head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">Text to MP3</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li><a href="/about/">About Me</a></li>
+    </ul>
+
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h2>Enter File Details</h2>
+
+            <hr />
+
+            <form class="form" role="form" method="post"><input type='hidden' name='csrfmiddlewaretoken' value='5ReoohdZivdIQzbOjeO9qzbUA6tvvTB8' />
+
+
+
+    <input id="id_hidden_field" name="hidden_field" type="hidden" />
+
+
+
+
+
+<div class="form-group">
+    <label class="control-label  " for="id_char_field">File Name</label>
+        <div class=" ">
+            <input class=" form-control" id="id_char_field" name="char_field" type="text" />
+        </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label  " for="id_char_field">Text</label>
+        <div class=" ">
+            <input class=" form-control" id="id_char_field" name="char_field" type="text" />
+        </div>
+</div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+        <!-- scripts -->
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
