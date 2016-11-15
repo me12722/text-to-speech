@@ -12,5 +12,15 @@
 }
 
 .container {
-    padding-left: 20%;
+    padding-left: 15%;
+}
+
+.button {
+    float: right;
+    width: 120px;
+}
+
+.btn-container {
+    position: inherit;
+    padding-right: 27%;
 }
