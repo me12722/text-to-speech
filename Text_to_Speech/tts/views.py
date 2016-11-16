@@ -8,6 +8,10 @@ def index(request):
     # print "We're here and the request is "
     template = None
     if request.method == 'POST':
+        print ("This is a post request" + request.method)
+        print(request)
+
+
         form = Mp3DetailsForm(request.POST)
         if form.is_valid():
             print (form.cleaned_data['file_name'])
@@ -15,6 +19,7 @@ def index(request):
             template = loader.get_template('tts/createmp3.html')
             return HttpResponse(template.render(request))
         else:
+            print(form)
             template = loader.get_template('tts/createmp3.html')
             return HttpResponse(template.render(request))
     else:
