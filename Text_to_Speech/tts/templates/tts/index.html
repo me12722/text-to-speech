@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <link>
   <link>
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}"
@@ -32,6 +33,7 @@
 
 
 
+
 <div class="container">
     <div class="row">
         <div class="span12">
@@ -39,34 +41,31 @@
 
 
 
-            <form class="form" role="form" method="post"><input type='hidden' name='csrfmiddlewaretoken' value='5ReoohdZivdIQzbOjeO9qzbUA6tvvTB8' />
+            <form class="form" role="form" action="/tts/" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input id="id_hidden_field" name="hidden_field" type="hidden" />
 
+                <div class="form-group">
+                    <label class="control-label  " for="id_char_field">File Name</label>
+                        <div class="file-name">
+                            <input class=" form-control" id="id_char_field" name="char_field" type="text" />
+                        </div>
+                </div>
 
+                <div class="form-group">
+                    <label class="control-label  " for="id_char_field">Text</label>
+                        <div class="text">
+                            <textarea class=" text-box" id="id_char_field" name="char_field" type="text" ></textarea>
+                        </div>
+                </div>
 
-    <input id="id_hidden_field" name="hidden_field" type="hidden" />
-
-
-
-
-
-<div class="form-group">
-    <label class="control-label  " for="id_char_field">File Name</label>
-        <div class="file-name">
-            <input class=" form-control" id="id_char_field" name="char_field" type="text" />
-        </div>
-</div>
-
-<div class="form-group">
-    <label class="control-label  " for="id_char_field">Text</label>
-        <div class="text">
-            <textarea class=" text-box" id="id_char_field" name="char_field" type="text" ></textarea>
-        </div>
-</div>
-<div class="btn-container">
-    <input type="button" class="button" name="button" value="submit"/>
-</div>
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
 
             </form>
+
         </div>
     </div>
 </div>

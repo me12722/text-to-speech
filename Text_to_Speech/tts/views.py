@@ -1,12 +1,34 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
+from django.template import RequestContext
 from django.template import loader
-from .models import MP3
-
+from .forms import Mp3DetailsForm
 
 def index(request):
-    template = loader.get_template('tts/index.html')
-    return HttpResponse(template.render(request))
+    # print "We're here and the request is "
+    template = None
+    if request.method == 'POST':
+        form = Mp3DetailsForm(request.POST)
+        if form.is_valid():
+            print (form.cleaned_data['file_name'])
+            print (form.cleaned_data['text'])
+            template = loader.get_template('tts/createmp3.html')
+            return HttpResponse(template.render(request))
+        else:
+            template = loader.get_template('tts/createmp3.html')
+            return HttpResponse(template.render(request))
+    else:
+        form = Mp3DetailsForm()
+        template = loader.get_template('tts/index.html')
+        return HttpResponse(template.render(request))
 
-def createMP3(request, file_name, text):
-    return  HttpResponse("form goes here")
+
+
+# this part works sorta, not sure why i spent time doing that.
+def createMP3(request):
+    if request.method == 'POST':
+        # template = loader.get_template('tts/createmp3.html')
+        return HttpResponse("we handled the post")
+
+    template = loader.get_template('tts/createmp3.html')
+    return  HttpResponse(template.render(request))

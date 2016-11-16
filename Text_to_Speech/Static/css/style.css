@@ -15,12 +15,14 @@
     padding-left: 15%;
 }
 
-.button {
+.btn btn-default {
     float: right;
-    width: 120px;
+    width: 96px;
 }
 
 .btn-container {
     position: inherit;
-    padding-right: 27%;
+    padding-right: 37%;
+    float: right;
+    width: 50px;
 }
