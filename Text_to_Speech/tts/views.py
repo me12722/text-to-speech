@@ -15,13 +15,12 @@ def index(request):
             aform.file_name = aform.cleaned_data['file_name']
             aform.text = aform.cleaned_data['text']
             aform.save()
-            return render(request, 'tts/createmp3.html')
-
+            return render(request, 'tts/createmp3.html',None, {'form': aform})
         else:
             aform = Mp3DetailsForm()
 
         return render(request, 'tts/createmp3.html')
-    
+
     else:
         form = Mp3DetailsForm()
         context = RequestContext(request)
@@ -31,6 +30,7 @@ def index(request):
 def createMP3(request):
     if request.method == 'GET':
         print("we are here!")
+        print(request)
         return HttpResponse("we handled the Get! " )
     if request.method == 'POST':
         print("we are posting son")
