@@ -12,14 +12,10 @@ def index(request):
         context = RequestContext(request)
         aform = Mp3DetailsForm(request.POST)
         if aform.is_valid():
-            aform.file_name = aform.cleaned_data['file_name']
-            aform.text = aform.cleaned_data['text']
+            file_name = aform.cleaned_data['file_name']
+            text = aform.cleaned_data['text']
             aform.save()
-
-            # the exists but not in modelform, it exists in MP3 model!!!!
-            # hopefully this will help pave the way to a productive friday!
-            # :)!!!
-            return render(request, 'tts/createmp3.html',None, {'form': aform})
+            return render(request, 'tts/createmp3.html', {'file_name': file_name, 'text':text})
         else:
             aform = Mp3DetailsForm()
 
@@ -30,6 +26,7 @@ def index(request):
         context = RequestContext(request)
         return render(request, 'tts/index.html', {'form':form})
 
+#the following function may not be necessary, woops
 # in the follwing method make a call to the pk of MP3 and then print the details!
 def createMP3(request):
     if request.method == 'GET':
