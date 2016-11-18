@@ -1,5 +1,8 @@
-from django import forms
+from django.forms import ModelForm
+from .models import MP3
 
-class Mp3DetailsForm(forms.Form):
-    file_name = forms.CharField(label='File Name', max_length=100)
-    text = forms.CharField(widget=forms.Textarea)
+class Mp3DetailsForm(ModelForm):
+
+    class Meta:
+        model = MP3
+        fields = ('file_name', 'text',)

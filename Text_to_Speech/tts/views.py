@@ -1,39 +1,40 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect,get_object_or_404
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.template import loader
 from .forms import Mp3DetailsForm
+from .models import MP3
 
 def index(request):
-    # print "We're here and the request is "
     template = None
+    aform = None
     if request.method == 'POST':
-        print ("This is a post request" + request.method)
-        print(request)
+        context = RequestContext(request)
+        aform = Mp3DetailsForm(request.POST)
+        if aform.is_valid():
+            aform.file_name = aform.cleaned_data['file_name']
+            aform.text = aform.cleaned_data['text']
+            aform.save()
+            return render(request, 'tts/createmp3.html')
 
-
-        form = Mp3DetailsForm(request.POST)
-        if form.is_valid():
-            print (form.cleaned_data['file_name'])
-            print (form.cleaned_data['text'])
-            template = loader.get_template('tts/createmp3.html')
-            return HttpResponse(template.render(request))
         else:
-            print(form)
-            template = loader.get_template('tts/createmp3.html')
-            return HttpResponse(template.render(request))
+            aform = Mp3DetailsForm()
+
+        return render(request, 'tts/createmp3.html')
+    
     else:
         form = Mp3DetailsForm()
-        template = loader.get_template('tts/index.html')
-        return HttpResponse(template.render(request))
+        context = RequestContext(request)
+        return render(request, 'tts/index.html', {'form':form})
 
 
-
-# this part works sorta, not sure why i spent time doing that.
 def createMP3(request):
+    if request.method == 'GET':
+        print("we are here!")
+        return HttpResponse("we handled the Get! " )
     if request.method == 'POST':
-        # template = loader.get_template('tts/createmp3.html')
-        return HttpResponse("we handled the post")
+        print("we are posting son")
+        return HttpResponse("we handled the Get! ")
 
     template = loader.get_template('tts/createmp3.html')
     return  HttpResponse(template.render(request))

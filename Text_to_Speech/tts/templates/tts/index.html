@@ -38,34 +38,33 @@
     <div class="row">
         <div class="span12">
             <h2>Enter File Details</h2>
+            {% block content %}
+            <form class="form" role="form" action="" method="POST">
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-default">Submit</button>
+                <!--{% csrf_token %}-->
+                <!--<input id="id_hidden_field" name="hidden_field" type="hidden" />-->
 
+                <!--<div class="form-group">-->
+                    <!--<label class="control-label  " for="file_name">File Name</label>-->
+                        <!--<div class="file-name">-->
+                            <!--<input class=" form-control" id="file_name" name="file_name" type="text" />-->
+                        <!--</div>-->
+                <!--</div>-->
 
+                <!--<div class="form-group">-->
+                    <!--<label class="control-label  " for="text">Text</label>-->
+                        <!--<div class="text">-->
+                            <!--<textarea class=" text-box" id="text" name="text" type="text" ></textarea>-->
+                        <!--</div>-->
+                <!--</div>-->
 
-            <form class="form" role="form" action="/tts/" method="POST">
-                {% csrf_token %}
-                {{ form }}
-                <input id="id_hidden_field" name="hidden_field" type="hidden" />
-
-                <div class="form-group">
-                    <label class="control-label  " for="file_name">File Name</label>
-                        <div class="file-name">
-                            <input class=" form-control" id="file_name" name="file_name" type="text" />
-                        </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label  " for="text">Text</label>
-                        <div class="text">
-                            <textarea class=" text-box" id="text" name="text" type="text" ></textarea>
-                        </div>
-                </div>
-
-                <div class="btn-container">
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </div>
+                <!--<div class="btn-container">-->
+                    <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                <!--</div>-->
 
             </form>
-
+            {% endblock %}
         </div>
     </div>
 </div>
